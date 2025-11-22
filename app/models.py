@@ -1,20 +1,21 @@
 from pydantic import BaseModel
-from typing import List, Optional, Float
+from typing import Optional
 from datetime import datetime
-import uuid
+
 
 class AnalysisVideo(BaseModel):
     id: int
     filename: str
     has_motion: bool
-    motion_score: Optional[Float] = None
-    processing_time: Optional[Float] = None
+    motion_score: Optional[float] = None
+    processing_time: Optional[float] = None
     status: str
     created_at: datetime
 
-    class config:
+    class Config:
         from_attributes = True
+
 
 class AnalysisResult(BaseModel):
     has_motion: bool
-    motion_score: Optional[Float] = None
+    motion_score: Optional[float] = None

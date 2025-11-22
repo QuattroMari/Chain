@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, Float
-from datetime import datetime
-from database import Base
+from datetime import datetime, timezone
+from app.database import Base
 
 class Video(Base):
     __tablename__ = "videos"
@@ -10,4 +10,4 @@ class Video(Base):
     motion_score = Column(Float, nullable=True)
     processing_time = Column(Float, nullable=True)
     status = Column(String(50), default='completed', nullable=False)
-    created_at = Column(DateTime, default=datetime.utc.now, nullable=False)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), nullable=False)
